@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 {
   "packageName" : "kaggle",
   "packageVersion" : "1"
-=======
-{
-  "packageName" : "kaggle",
-  "packageVersion" : "1"
->>>>>>> e845925b6297e856d3840686af965c6579551143
 }
