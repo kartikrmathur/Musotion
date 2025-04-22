@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Facial Expression-Based Music Player
 
 This application uses facial expression recognition to detect user emotions and play music that matches the detected mood.
@@ -126,3 +127,122 @@ The music player uses Pygame's mixer module to handle audio playback. It automat
 - If webcam doesn't initialize, check camera connection and permissions
 - If music doesn't play, ensure MP3 files are placed in the correct emotion folders
 - For model errors, verify the trained model file exists in the output_model directory
+=======
+# Musotion - Emotion Recognition & Music Player
+
+A Python application that recognizes facial emotions using deep learning and plays music based on detected emotions.
+
+## Project Components
+
+### 1. Emotion Recognition Model (emotionRecTrain.py)
+
+Python script using Keras + TensorFlow to train a custom machine learning model to recognize emotions from facial images.
+
+#### Training
+
+Required arguments:
+
+- `csv_file` - path to the FER2013 dataset CSV file
+- `export_path` - path to save the trained model artifacts
+
+Optional arguments:
+
+- `batch_size` - batch size during training
+- `n_epochs` - number of training epochs
+- `debug` - Will override script arguments for batch_size and n_epochs to 10 and 1
+
+Example commands:
+
+```bash
+# Training with sample dataset in debug mode
+python emotionRecTrain.py --csv_file=sample_fer2013.csv --export_path=output_model --debug
+
+# Training with full dataset
+python emotionRecTrain.py --csv_file=path_to_fer2013.csv --export_path=output_model
+
+# Setting custom parameters
+python emotionRecTrain.py --csv_file=path_to_fer2013.csv --export_path=output_model --batch_size=50
+python emotionRecTrain.py --csv_file=path_to_fer2013.csv --export_path=output_model --n_epochs=100
+```
+
+### 2. Emotion Demo Application (emotion_demo.py)
+
+A diagnostic tool that checks your system setup and demonstrates data preprocessing.
+
+```bash
+python emotion_demo.py
+```
+
+### 3. Music Player Module (music_player.py)
+
+A standalone module that manages music playback based on emotional states.
+
+```bash
+python music_player.py
+```
+
+This script can also be run directly to test music playback for each emotion.
+
+### 4. Emotion-Based Music Player (emotion_music_player.py)
+
+The main application that combines emotion recognition and music playback. It detects your emotion through the webcam and plays appropriate music.
+
+```bash
+python emotion_music_player.py
+```
+
+Controls:
+
+- Press 'q' to quit
+- Press '+' to increase volume
+- Press '-' to decrease volume
+- Press 'm' to mute/unmute
+
+## Setup and Installation
+
+1. Create a Python environment (recommended Python 3.10 or 3.11)
+2. Install required packages:
+   ```bash
+   pip install --user tensorflow keras pandas numpy pygame opencv-python imutils
+   ```
+3. Download the FER2013 dataset or use the provided sample dataset
+4. Organize your music files in the following structure:
+   ```
+   music/
+   ├── angry/      # MP3 files for angry emotion
+   ├── disgust/    # MP3 files for disgust emotion
+   ├── fear/       # MP3 files for fear emotion
+   ├── happy/      # MP3 files for happy emotion
+   ├── neutral/    # MP3 files for neutral emotion
+   ├── sad/        # MP3 files for sad emotion
+   └── surprise/   # MP3 files for surprise emotion
+   ```
+
+## Running the Project
+
+1. Train the emotion recognition model:
+
+   ```bash
+   python emotionRecTrain.py --csv_file=sample_fer2013.csv --export_path=output_model
+   ```
+
+2. Add your MP3 files to each emotion folder in the `music` directory
+
+3. Run the emotion-based music player:
+   ```bash
+   python emotion_music_player.py
+   ```
+
+## Model Architecture
+
+The emotion recognition model uses a VGG16 pre-trained model for feature extraction, followed by custom dense layers for emotion classification. The model is trained to recognize 7 different emotions from facial images.
+
+## Dataset
+
+The model uses the FER2013 dataset, which contains grayscale images of faces labeled with emotions. A sample version of the dataset is included in the project as `sample_fer2013.csv`.
+
+## References
+
+For more details about the emotion recognition model and architecture, read the article:
+[Training a TensorFlow Model to Recognize Emotions](https://medium.com/@jsflo.dev/training-a-tensorflow-model-to-recognize-emotions-a20c3bcd6468)
+>>>>>>> e845925b6297e856d3840686af965c6579551143
